@@ -13,7 +13,7 @@ namespace LeblancSimon\EUCookieLawBundle\EventSubscriber;
 
 use LeblancSimon\EUCookieLawBundle\Injector\EUCookieLawTemplate;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -47,11 +47,11 @@ class EUCookieLawDivSubscriber implements EventSubscriberInterface
     /**
      * Inject the cookie law template
      *
-     * @param FilterResponseEvent $event
+     * @param ResponseEvent $event
      */
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event)
     {
-        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
+        if (HttpKernelInterface::MAIN_REQUEST !== $event->getRequestType()) {
             return;
         }
 

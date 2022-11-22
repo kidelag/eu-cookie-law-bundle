@@ -18,8 +18,8 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $tree_builder = new TreeBuilder();
-        $root_node = $tree_builder->root('eu_cookie_law');
+        $tree_builder = new TreeBuilder('eu_cookie_law');
+        $root_node = $tree_builder->getRootNode();
 
         $root_node
             ->children()
@@ -36,7 +36,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue(null)
                 ->end()
                 ->scalarNode('template')
-                    ->defaultValue('LeblancSimonEUCookieLawBundle::eu_cookie_law.html.twig')
+                    ->defaultValue('@LeblancSimonEUCookieLaw/eu_cookie_law.html.twig')
                 ->end()
             ->end()
         ;
